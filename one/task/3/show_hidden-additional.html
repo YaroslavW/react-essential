@@ -46,15 +46,30 @@
         }
     ];
 
-const Contact = props =>{
-	return (
-			<li>
-				<div>
-					<p>{props.name}</p>
-					<p>{props.phoneNumber}</p>
-				</div>
-			</li>
+class Contact extends React.Component{
+	constructor(props){
+		super(props)
+		this.state={
+			show: false
+		}
+	}
+	handleShow(e){
+		this.setState({
+			show: !this.state.show
+		})
+	}
+	render(){
+		let additional = this.state.show ? this.props.add : ''
+			return (
+						<li onClick={this.handleShow.bind(this)}>
+							<div>
+								<p>{this.props.name}</p>
+								<p>{this.props.phoneNumber}</p>
+								<p>{additional}</p>
+							</div>
+						</li>
 		)
+	}
 }
 
 
@@ -88,6 +103,7 @@ class ContactList extends React.Component{
 								key={el.id}
 								name={el.name}
 								phoneNumber={el.phoneNumber}
+								add ={el.additional}
 								/>
 							)
 					})}
