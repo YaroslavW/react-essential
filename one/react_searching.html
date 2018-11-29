@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Hello World</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     
@@ -17,37 +18,75 @@
             id: 1,
             name: 'Darth Vader',
             phoneNumber: '+250966666666',
-            image: 'img/darth.gif'
+            image: 'img/pic1.jpg'
         }, {
             id: 2,
             name: 'Princess Leia',
             phoneNumber: '+250966344466',
-            image: 'img/leia.gif'
+            image: 'img/pic2.jpg'
         }, {
             id: 3,
             name: 'Luke Skywalker',
             phoneNumber: '+250976654433',
-            image: 'img/luke.gif'
+            image: 'img/pic3.jpg'
         }, {
             id: 4,
             name: 'Chewbacca',
             phoneNumber: '+250456784935',
-            image: 'img/chewbacca.gif'
+            image: 'img/pic4.jpg'
+        }, {
+            id: 5,
+            name: 'CHarlu Hubster',
+            phoneNumber: '+678493525045',
+            image: 'img/pic5.jpg'
+        }, {
+            id: 6,
+            name: 'Princess Sarah',
+            phoneNumber: '+250456784935',
+            image: 'img/pic6.jpg'
         }
     ];
 
     class Contact extends React.Component{
     render(){
-        return(
-            <ul>
-                <li>Hello {this.props.name}</li>
-            </ul>
+        return( <li>
+                    <img className="contact-image" src={this.props.image} width="60px" height="60px" />
+                    <div className="contact-info">
+                        <div className="contact-name"> {this.props.name} </div>
+                        <div className="contact-number"> {this.props.phoneNumber} </div>
+                    </div> 
+                </li>
+            
             )
-}
-}
+        }
+    }
 
+    class ContactList extends React.Component{
+        constructor(props){
+            super(props)
+            this.state={
+                displayedContacts: CONTACTS
+            }
+        }
+    render(){
+        return(
+            <div className="contacts">
+                <ul>
+                    {this.state.displayedContacts.map(function(el){
+                        return <Contact 
+                                key={el.id}
+                                name={el.name}
+                                phoneNumber={el.phoneNumber}
+                                image={el.image}
+                                />
+                    })}
+                </ul>
+            </div>
+            )
+        }
+    }
   ReactDOM.render(
-    <Contact name={CONTACTS[0].name} />,
+    <ContactList cont={CONTACTS}/>,
     document.getElementById('root')
   );
 
