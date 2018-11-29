@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+        var CONTACTS = [
+            {
+                id: 1,
+                name: 'Darth Vader',
+                phoneNumber: '+250966666666',
+                image: 'img/darth.gif'
+            }, {
+                id: 2,
+                name: 'Princess Leia',
+                phoneNumber: '+250966344466',
+                image: 'img/leia.gif'
+            }, {
+                id: 3,
+                name: 'Luke Skywalker',
+                phoneNumber: '+250976654433',
+                image: 'img/luke.gif'
+            }, {
+                id: 4,
+                name: 'Chewbacca',
+                phoneNumber: '+250456784935',
+                image: 'img/chewbacca.gif'
+            }
+        ];
+
+        
+      ReactDOM.render(
+        <h1>Hello, world!</h1>,
+        document.getElementById('root')
+      );
+
+    </script>
+  </body>
+</html>
