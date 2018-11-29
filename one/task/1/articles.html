@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+const source = [
+  {
+    id:0,
+    title:"Title One",
+    author:"Author One",
+    body:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. In ratione, debitis consequuntur harum cupiditate totam eius quasi velit enim amet praesentium necessitatibus temporibus, laboriosam nobis? Adipisci eligendi modi aperiam vitae cupiditate debitis ipsum amet eveniet est consequuntur maxime commodi tempore porro vel, id, eaque ut reiciendis, iusto ullam numquam illo alias mollitia esse sapiente ex. Perspiciatis quibusdam veritatis inventore debitis praesentium aut at voluptatum animi exercitationem. Quidem voluptatibus cumque voluptatem quae blanditiis ipsam iusto, ducimus non error ratione explicabo sunt! ipsum dolor sit amet, consectetur adipisicing elit. Provident, esse."
+  },
+    {
+    id:1,
+    title:"Title -2",
+    author:"Author Two",
+    body:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut minus pariatur modi a numquam, quis maiores quam quod doloribus! Culpa!"
+  },
+    {
+    id:2,
+    title:"Title -3",
+    author:"Author Three",
+    body:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio repudiandae, excepturi veritatis nobis, temporibus praesentium quod, culpa velit illum dolorum iste iure id deserunt. Amet corporis, maiores temporibus id aliquam!"
+  },
+    {
+    id:3,
+    title:"Title Four",
+    author:"Author Four",
+    body:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem dolore iure blanditiis modi, iste! Sint voluptatibus corrupti, libero sequi dignissimos ad voluptas officia, tenetur quibusdam debitis. Sapiente maxime voluptate assumenda natus possimus nihil sit neque, excepturi, nam magni mollitia cum. ipsum dolor sit amet, consectetur adipisicing elit. Provident, esse."
+  },
+    {
+    id:4,
+    title:"Title - 5",
+    author:"Author five",
+    body:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores unde consequuntur magni eius itaque esse praesentium officia repellendus consectetur voluptates minus accusamus omnis eligendi facilis culpa illum, illo sint voluptas. ipsum dolor sit amet, consectetur adipisicing elit. Provident, esse."
+  },
+      {
+    id:5,
+    title:"Title -6",
+    author:"Author Six",
+    body:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident, esse."
+  },
+      {
+    id:6,
+    title:"Title - 7",
+    author:"Author Seven",
+    body:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus dicta, molestias molestiae provident amet odio praesentium illo officiis. Exercitationem, fugiat! ipsum dolor sit amet, consectetur adipisicing elit. Provident, esse."
+  },
+]
+
+var Article = (props) =>{
+  return(
+      <li>
+        <p>{props.title}</p>
+        <p>{props.author}</p>
+        <p>{props.body}</p>
+      </li>
+    )
+}
+
+
+
+class ArticleList extends React.Component{
+  constructor(props){
+  super(props)
+  this.state={
+    articles: source
+  }
+}
+render(){
+  return (
+      <ul>
+        {this.state.articles.map(el => {
+          return(
+            <Article
+            key={el.id}
+            title={el.title}
+            author={el.author}
+            body={el.body}
+            />
+            )
+        })}
+      </ul>
+    )
+}
+}
+      ReactDOM.render(
+        <ArticleList />,
+        document.getElementById('root')
+      );
+
+    </script>
+  </body>
+</html>

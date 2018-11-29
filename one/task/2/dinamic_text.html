@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+    class Text extends React.Component{
+      constructor(props){
+        super(props)
+        this.state={
+        text:'Hello, stranger'
+      }
+    }
+    handleNameChange(e){
+      this.setState({
+        text: e.target.value
+      })
+    }
+    render(){
+      return(
+        <div>
+          <input type="text" placeholder="Hello, stranger" onChange={this.handleNameChange.bind(this)} />
+          <h1>{this.state.text}</h1>
+        </div>
+        )
+    }
+  }
+      ReactDOM.render(
+        <Text/>,
+        document.getElementById('root')
+      );
+
+    </script>
+  </body>
+</html>
