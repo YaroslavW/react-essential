@@ -68,10 +68,22 @@
                 displayedContacts: CONTACTS
             }
         }
+       
+        handleSearch(e){
+            var searchQuery =e.target.value.toLowerCase()
+            var displayedContacts = CONTACTS.filter(function(el) {
+                var searchValue = el.name.toLowerCase()
+                return searchValue.indexOf(searchQuery) !== -1;
+            })
+                this.setState({
+                    displayedContacts: displayedContacts
+                })
+        }
     render(){
         return(
             <div className="contacts">
-                <ul>
+                <input type="text" placeholder="Search..." className="search-field" onChange={this.handleSearch.bind(this)} />
+                <ul className="contacts-list">
                     {this.state.displayedContacts.map(function(el){
                         return <Contact 
                                 key={el.id}
