@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+    var CONTACTS = [
+        {
+            id: 1,
+            name: 'Darth Vader',
+            phoneNumber: '+250966666666',
+            additional:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex dolore aliquam quisquam ut sequi aperiam itaque ratione, aliquid dolores rem asperiores possimus, ea perferendis quas, porro tempora dolor laboriosam. Labore.'
+        }, {
+            id: 2,
+            name: 'Princess Leia',
+            phoneNumber: '+250966344466',
+            additional:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis asperiores autem, quis velit voluptatum quisquam sit doloribus. Aliquid nulla cupiditate totam sapiente. Deleniti ex dolorum, rerum autem fuga quod accusamus. Ratione mollitia harum culpa consectetur, numquam tempore consequuntur deleniti, repellendus autem debitis explicabo, praesentium at ullam blanditiis iusto, voluptas doloribus.'
+        }, {
+            id: 3,
+            name: 'Luke Skywalker',
+            phoneNumber: '+250976654433',
+            additional:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus fugiat rerum quasi beatae facere nam voluptate. Eius iusto, quod dolor!'
+        }, {
+            id: 4,
+            name: 'Chewbacca',
+            phoneNumber: '+250456784935',
+            additional:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim veniam iste voluptatum est, voluptas dolorem natus alias fugiat dolores, odit, nihil. Temporibus adipisci ipsa ullam doloremque modi unde id, quasi obcaecati sequi consequatur ex nulla quia, reprehenderit corporis. In sit maxime voluptas unde voluptate laudantium commodi illum et tempora nihil rem nulla quae eius, dignissimos libero ea, dolore laborum soluta quod praesentium voluptatibus voluptatem suscipit expedita vitae! Porro, praesentium, sapiente.'
+        }, {
+            id: 5,
+            name: 'CHarlu Hubster',
+            phoneNumber: '+678493525045',
+            additional:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero nisi, quo eum repudiandae ea ipsum eos ex velit ducimus est perspiciatis saepe reprehenderit illo eveniet ab minus voluptatibus dicta cupiditate ipsam numquam. Officia earum, incidunt repudiandae cupiditate ab officiis obcaecati!'
+        }, {
+            id: 6,
+            name: 'Princess Sarah',
+            phoneNumber: '+250456784935',
+            additional:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, ipsam doloremque, ratione exercitationem voluptas esse placeat sit debitis. Neque repellat cumque blanditiis officia, minus molestiae nisi nihil ducimus mollitia accusamus commodi et eos eius molestias perspiciatis, debitis, alias dolore odit suscipit consequatur dolor asperiores eum fuga culpa. Aspernatur, a ipsum?'
+        }
+    ];
+
+const Contact = props =>{
+	return (
+			<li>
+				<div>
+					<p>{props.name}</p>
+					<p>{props.phoneNumber}</p>
+				</div>
+			</li>
+		)
+}
+
+
+class ContactList extends React.Component{
+	constructor(props){
+		super(props)
+		this.state={
+			display: CONTACTS
+		}
+	}
+	handleSearch(e){
+		var user = e.target.value.toLowerCase()
+		var display = CONTACTS.filter(el => {
+			var searchContacts = el.name.toLowerCase();
+			return(
+					searchContacts.indexOf(user) !== -1
+				)
+		})
+		this.setState({
+			display: display
+		})
+	}
+	render(){
+		return(
+			<div>
+			<input type="text" placeholder="Search.." onChange={this.handleSearch.bind(this)} />
+				<ul>
+					{this.state.display.map(el => {
+						return(
+								<Contact
+								key={el.id}
+								name={el.name}
+								phoneNumber={el.phoneNumber}
+								/>
+							)
+					})}
+				</ul>
+			</div>
+			)
+	}
+}
+
+      ReactDOM.render(
+        <ContactList />,
+        document.getElementById('root')
+      );
+
+    </script>
+  </body>
+</html>
